@@ -38,11 +38,11 @@ QString ProcessModel::prettyName() const noexcept
   return tr("Tutorial Process");
 }
 
-void ProcessModel::startExecution() {}
+//void ProcessModel::startExecution() {}
 
-void ProcessModel::stopExecution() {}
+//void ProcessModel::stopExecution() {}
 
-void ProcessModel::reset() {}
+//void ProcessModel::reset() {}
 
 ProcessStateDataInterface* ProcessModel::startStateData() const noexcept
 {

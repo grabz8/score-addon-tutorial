@@ -38,9 +38,9 @@ public:
   PROPERTY(int, bananas READ bananas WRITE setBananas NOTIFY bananasChanged)
 private:
   QString prettyName() const noexcept override;
-  void startExecution() override;
-  void stopExecution() override;
-  void reset() override;
+  //void startExecution() override;
+  //void stopExecution() override;
+  //void reset() override;
   ProcessStateDataInterface* startStateData() const noexcept override;
   ProcessStateDataInterface* endStateData() const noexcept override;
   Selection selectableChildren() const noexcept override;

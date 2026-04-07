@@ -4,7 +4,7 @@ import QtQuick.Controls 2.1
 import QtQuick.Particles 2.0
 Rectangle {
     anchors.fill: parent
-    color:  "#1A2024"
+    color:  "red"
     width: 300
     height: 1000
 

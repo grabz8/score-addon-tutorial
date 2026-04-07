@@ -15,7 +15,6 @@ class LocalTreeProcessComponent
 
 public:
   LocalTreeProcessComponent(
-      const Id<score::Component>& id,
       ossia::net::node_base& parent,
       Tutorial::ProcessModel& scenario,
       const score::DocumentContext& doc,

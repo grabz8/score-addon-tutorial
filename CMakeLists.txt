@@ -1,6 +1,6 @@
 project(score_addon_tutorial LANGUAGES CXX)
 
-find_package(Qt5 COMPONENTS QuickWidgets)
+find_package(Qt6 COMPONENTS QuickWidgets)
 # General initialization
 score_common_setup()
 
@@ -62,7 +62,7 @@ set(SRCS
     score_addon_tutorial.cpp
 )
 
-qt5_add_resources(QRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources/Tutorial.qrc")
+qt6_add_resources(QRCS "${CMAKE_CURRENT_SOURCE_DIR}/resources/Tutorial.qrc")
 
 # Creation of the library
 add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
@@ -71,7 +71,7 @@ add_library(${PROJECT_NAME} ${SRCS} ${HDRS} ${QRCS})
 score_generate_command_list_file(${PROJECT_NAME} "${HDRS}")
 
 # Link
-target_link_libraries(${PROJECT_NAME} PUBLIC score_plugin_engine Qt5::QuickWidgets)
+target_link_libraries(${PROJECT_NAME} PUBLIC score_plugin_engine Qt6::QuickWidgets)
 
 # Target-specific options
 setup_score_plugin(${PROJECT_NAME})

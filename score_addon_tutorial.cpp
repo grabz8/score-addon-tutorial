@@ -65,10 +65,13 @@ void score_addon_tutorial::updateSaveFile(
 std::vector<std::unique_ptr<score::InterfaceListBase>>
 score_addon_tutorial::factoryFamilies()
 {
+  // Just use make_ptr_vector directly as suggested by the compiler
   return make_ptr_vector<
       score::InterfaceListBase,
       Tutorial::PolymorphicElementFactoryList>();
 }
+
+
 
 /**
  * @brief score_addon_tutorial::factories
@@ -100,31 +103,24 @@ score_addon_tutorial::factoryFamilies()
  * However, it should rarely be necessary to access a particular factory.
  * The general case should be getting a factory according to an user input.
  */
-std::vector<std::unique_ptr<score::InterfaceBase>>
+std::vector<score::InterfaceBase*>
 score_addon_tutorial::factories(
     const score::ApplicationContext& ctx,
     const score::InterfaceKey& key) const
 {
   return instantiate_factories<
       score::ApplicationContext,
-      FW<Process::ProcessModelFactory, // An abstract factory
-         Tutorial::ProcessFactory      // followed by all the matching concrete
-                                       // factories
-         >,
+      FW<Process::ProcessModelFactory, Tutorial::ProcessFactory>,
       FW<Process::LayerFactory, Tutorial::LayerFactory>,
       FW<Process::InspectorWidgetDelegateFactory, Tutorial::InspectorFactory>,
-      FW<Execution::ProcessComponentFactory,
-         Tutorial::ProcessExecutorComponentFactory>,
-      FW<LocalTree::ProcessComponentFactory,
-         Tutorial::LocalTreeProcessComponentFactory>,
+      FW<Execution::ProcessComponentFactory, Tutorial::ProcessExecutorComponentFactory>,
+      FW<LocalTree::ProcessComponentFactory, Tutorial::LocalTreeProcessComponentFactory>,
       FW<score::DocumentPluginFactory, Tutorial::DocumentPluginFactory>,
-      FW<score::PanelDelegateFactory,
-         Tutorial::PanelDelegateFactory>,
-      FW<
-          // This abstract factory was defined inside the tutorial plug-in :
-          Tutorial::PolymorphicElementFactory,
-          Tutorial::ConcretePolymorphicElementFactory>>(ctx, key);
+      FW<score::PanelDelegateFactory, Tutorial::PanelDelegateFactory>,
+      FW<Tutorial::PolymorphicElementFactory, Tutorial::ConcretePolymorphicElementFactory>
+      >(ctx, key);
 }
+
 
 /**
  * @brief score_addon_tutorial::make_applicationPlugin

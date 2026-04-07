@@ -8,10 +8,8 @@ namespace Tutorial
 
 DocumentPlugin::DocumentPlugin(
     const score::DocumentContext& ctx,
-    Id<score::DocumentPlugin> id,
     QObject* parent)
     : score::SerializableDocumentPlugin{ctx,
-                                        std::move(id),
                                         "DocumentPlugin",
                                         parent}
 {

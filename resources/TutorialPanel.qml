@@ -3,7 +3,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.1
 Rectangle {
     anchors.fill: parent
-    color:  "#1A2024"
+    color:  "cyan"
     width: 300
     height: 1000
     Column {

@@ -7,21 +7,23 @@ namespace Tutorial
 {
 
 LocalTreeProcessComponent::LocalTreeProcessComponent(
-    const Id<score::Component>& id,
     ossia::net::node_base& parent,
-    Tutorial::ProcessModel& proc,
-    const score::DocumentContext& sys,
+    Tutorial::ProcessModel& scenario,
+    const score::DocumentContext& doc,
     QObject* parent_obj)
     : LocalTree::ProcessComponent_T<Tutorial::ProcessModel>{
-          parent,
-          proc,
-          sys,
-          id,
-          "TutorialComponent",
-          parent_obj}
+          parent,             // 1
+          scenario,           // 2
+          doc,                // 3
+          "TutorialComponent", // 4 - The missing string name!
+          parent_obj}         // 5
 {
-  add<ProcessModel::p_bananas>(proc);
+  add<ProcessModel::p_bananas>(scenario);
 }
+
+
+
+
 
 LocalTreeProcessComponent::~LocalTreeProcessComponent() {}
 

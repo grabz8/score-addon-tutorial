@@ -51,15 +51,17 @@ class DocumentPlugin final : public score::SerializableDocumentPlugin
 public:
   explicit DocumentPlugin(
       const score::DocumentContext& ctx,
-      Id<score::DocumentPlugin> id,
       QObject* parent);
 
   template <typename Impl>
   DocumentPlugin(const score::DocumentContext& ctx, Impl& vis, QObject* parent)
+      // Old: {ctx, vis, "DocumentPlugin", parent}
+      // New: {ctx, "DocumentPlugin", vis, parent}
       : score::SerializableDocumentPlugin{ctx, vis, parent}
   {
     vis.writeTo(*this);
   }
+
 };
 
 using DocumentPluginFactory = score::DocumentPluginFactory_T<DocumentPlugin>;

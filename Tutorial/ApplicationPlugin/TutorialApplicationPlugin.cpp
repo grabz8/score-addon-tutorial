@@ -21,11 +21,6 @@ score::GUIElements ApplicationPlugin::makeGUIElements()
   return {};
 }
 
-bool ApplicationPlugin::handleStartup()
-{
-  return false;
-}
-
 void ApplicationPlugin::on_initDocument(score::Document& doc) {}
 
 void ApplicationPlugin::on_loadedDocument(score::Document& doc) {}

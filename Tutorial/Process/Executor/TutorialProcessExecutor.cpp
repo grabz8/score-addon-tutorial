@@ -1,5 +1,6 @@
 #include "TutorialProcessExecutor.hpp"
-
+#include "ossia/network/base/parameter.hpp"
+#include <ossia/network/value/value.hpp>
 #include <Process/ExecutionContext.hpp>
 
 #include <ossia/dataflow/port.hpp>
@@ -32,7 +33,12 @@ public:
     {
       if (auto p = n->get_parameter())
       {
-        f.insert(*p, ossia::typed_value{1.234f});
+		//f.insert(*p, ossia::typed_value{1.234f});
+// 1. Get the port reference (p is likely your parameter/port pointer)
+// If p is a pointer to ossia::net::parameter_base
+// Explicit conversion to ossia::value
+p->push_value(ossia::value{1.234f}); 
+
       }
     }
 
@@ -55,9 +61,9 @@ public:
 
       // Write some audio
       auto& output = *m_outlets[0]->target<ossia::audio_port>();
-      output.samples.resize(1); // number of channels
+      output.set_channels(1); // number of channels
 
-      auto& chan = output.samples[0];
+      auto& chan = output.channel(0);
 
       if (chan.size() < tk.offset.impl + samples)
         chan.resize((tk.offset + samples).impl);
@@ -76,9 +82,8 @@ public:
 ProcessExecutorComponent::ProcessExecutorComponent(
     Tutorial::ProcessModel& element,
     const Execution::Context& ctx,
-    const Id<score::Component>& id,
     QObject* parent)
-    : ProcessComponent_T{element, ctx, id, "TutorialExecutorComponent", parent}
+    : ProcessComponent_T{element, ctx, "TutorialExecutorComponent", parent}
 {
   auto n = std::make_shared<tutorial_node>();
 

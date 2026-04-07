@@ -36,8 +36,6 @@ protected:
 
   score::GUIElements makeGUIElements() override;
 
-  bool handleStartup() override;
-
   void on_initDocument(score::Document& doc) override;
 
   void on_loadedDocument(score::Document& doc) override;

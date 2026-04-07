@@ -29,7 +29,6 @@ public:
   ProcessExecutorComponent(
       ProcessModel& element,
       const Execution::Context& ctx,
-      const Id<score::Component>& id,
       QObject* parent);
 };
 

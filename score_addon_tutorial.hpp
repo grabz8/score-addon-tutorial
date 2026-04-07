@@ -56,11 +56,12 @@ private:
       score::Version current_version) override;
 
   // Defined in FactoryList_QtInterface
-  std::vector<std::unique_ptr<score::InterfaceListBase>>
-  factoryFamilies() override;
+  std::vector<std::unique_ptr<score::InterfaceListBase>> factoryFamilies() override;
+  //std::vector<score::InterfaceListBase*> factoryFamilies() override;
 
   // Defined in FactoryInterface_QtInterface
-  std::vector<std::unique_ptr<score::InterfaceBase>> factories(
+  //std::vector<std::unique_ptr<score::InterfaceBase>> factories(
+  std::vector<score::InterfaceBase*> factories(
       const score::ApplicationContext& ctx,
       const score::InterfaceKey& key) const override;
 
